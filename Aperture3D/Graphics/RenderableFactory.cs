@@ -28,6 +28,9 @@ namespace Aperture3D.Graphics
 			List<ushort> indices = new List<ushort>();
 			List<float> normals = new List<float>();
 			
+			height++;
+			width++;
+			
 			float unitWidth = 1f/(float)width;
 			float unitHeight = 1f/(float)height;
 			
@@ -39,9 +42,17 @@ namespace Aperture3D.Graphics
 					vertices.Add(0);	//Height of 0
 					vertices.Add(y);
 					
-					indices.Add((ushort)x);
-					indices.Add((ushort) (x + 1) );
-					indices.Add((ushort) (width * (y+1) + x) );
+					if(y < height - 1 && x < width - 1){
+						
+					indices.Add((ushort) ( (width * y)        + x) );
+					indices.Add((ushort) ( (width * (y + 1))  + x) );
+					indices.Add((ushort) ( (width * y)        + (x + 1)) );
+						
+					indices.Add((ushort) ( (width * (y + 1))        + x) );
+					indices.Add((ushort) ( (width * (y + 1))  + x + 1) );
+					indices.Add((ushort) ( (width * y)        + (x + 1)) );
+						
+					}
 					
 					texcoords.Add((float)x * unitWidth);
 					texcoords.Add((float)y * unitHeight);
