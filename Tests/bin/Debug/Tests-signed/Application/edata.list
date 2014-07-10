@@ -1,0 +1,11 @@
+shaders/Simple.cgx
+app.exe
+Aperture3D.dll
+BEPUPhysicsVita.dll
+System.Core.dll
+System.Json.dll
+System.Xml.dll
+System.Runtime.Serialization.dll
+System.ServiceModel.Web.dll
+System.ServiceModel.dll
+protobuf-net.dll

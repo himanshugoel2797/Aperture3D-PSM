@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>10.0.0</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{B3F5FA6D-8C8E-461A-A412-A9FBF058E08F}</ProjectGuid>
+    <ProjectTypeGuids>{69878862-DA7D-4DC6-B0A1-50D8FAB4242F};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Aperture3D</RootNamespace>
+    <AssemblyName>Aperture3D</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;FRONT_TOUCH</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>none</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="Sce.PlayStation.Core" />
+    <Reference Include="protobuf-net">
+      <HintPath>..\protobuf-net.dll</HintPath>
+    </Reference>
+    <Reference Include="BEPUPhysicsVita">
+      <HintPath>..\BEPUPhysicsVita.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Sce\Sce.Psm.CSharp.targets" />
+  <ItemGroup>
+    <Compile Include="Context.cs" />
+    <Compile Include="Graphics\Model.cs" />
+    <Compile Include="Helpers\VFS.cs" />
+    <Compile Include="Input\Input.cs" />
+    <Compile Include="INode.cs" />
+    <Compile Include="Nodes\MethodInvoker.cs" />
+    <Compile Include="Nodes\EntityNode.cs" />
+    <Compile Include="Nodes\RenderNode.cs" />
+    <Compile Include="Graphics\IRenderable.cs" />
+    <Compile Include="Nodes\IShaderNode.cs" />
+    <Compile Include="Graphics\RenderableFactory.cs" />
+    <Compile Include="Graphics\Renderable.cs" />
+    <Compile Include="Nodes\SceneGraph\RootNode.cs" />
+    <Compile Include="Nodes\SceneGraph\SceneNode.cs" />
+    <Compile Include="Nodes\Cameras\CameraNode.cs" />
+    <Compile Include="Nodes\Cameras\FirstPersonCamera.cs" />
+    <Compile Include="ShaderConfigs\Simple.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Graphics\" />
+    <Folder Include="Helpers\" />
+    <Folder Include="Input\" />
+    <Folder Include="shaders\" />
+    <Folder Include="ShaderConfigs\" />
+    <Folder Include="Nodes\" />
+    <Folder Include="Nodes\SceneGraph\" />
+    <Folder Include="Nodes\Cameras\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedShaderProgram Include="shaders\Simple.fcg" />
+    <EmbeddedShaderProgram Include="shaders\Simple.vcg" />
+  </ItemGroup>
+</Project>

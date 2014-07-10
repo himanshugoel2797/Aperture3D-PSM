@@ -1,0 +1,17 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Aperture3D\Nodes\Cameras\FirstPersonCamera.cs">
+    <Files>
+      <File FileName="Aperture3D\Nodes\EntityNode.cs" Line="42" Column="56" />
+      <File FileName="Aperture3D\Graphics\RenderableFactory.cs" Line="17" Column="13" />
+      <File FileName="Aperture3D\Nodes\SceneGraph\RootNode.cs" Line="4" Column="27" />
+      <File FileName="Aperture3D\Nodes\SceneGraph\SceneNode.cs" Line="14" Column="3" />
+      <File FileName="Aperture3D\Nodes\Cameras\CameraNode.cs" Line="4" Column="35" />
+      <File FileName="Aperture3D\Nodes\Cameras\FirstPersonCamera.cs" Line="132" Column="7" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
