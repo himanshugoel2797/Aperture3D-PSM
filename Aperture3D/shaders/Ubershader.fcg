@@ -1,6 +1,55 @@
-
-void main( float4 out Color : COLOR,
-           uniform float4 MaterialColor )
+//Calculate and return the bitangent given the tangent and normal
+float3 CalcBiTan(float4 tangent, float4 normal)
 {
-	Color = MaterialColor;
+	float4 Tan = normalize(tangent);
+	float4 Norm = normalize(normal);
+    Tan = normalize(Tan - dot(Tan, Norm) * Norm);
+    return cross(Tan.xyz, Norm.xyz);
+}
+
+float4 ComputeIllumination
+    ( 
+        float3 LightDir, 
+        float3 Normal, 
+        float  Shadow 
+    )
+{
+    float NdotL = dot( LightDir, Normal );
+    Shadow      = 1.0f - Shadow;
+ 
+    float c = max( 0.25f, NdotL * Shadow );
+ 
+    return float4( c, c, c, 1.0f );
+}
+
+void main( 
+	//float4 in v_Tangent : TEXCOORD0,
+	//float4 in v_Normal : TEXCOORD1,
+	float2 in v_TexCoord : TEXCOORD2,
+	float3 in v_LightDir : COLOR0,
+	float3 in v_ViewDir : COLOR1,
+	
+	uniform sampler2D normalMap : TEXUNIT0,
+	uniform sampler2D texMap : TEXUNIT1,
+	uniform sampler2D specMap : TEXUNIT2,
+	uniform sampler2D heightMap : TEXUNIT3,
+	
+	uniform float heightScale,
+	
+	float4 out Color : COLOR )
+{
+	float3 view = normalize(v_ViewDir).xyz;
+	float3 light = normalize(v_LightDir).xyz;
+	
+	float height = tex2D(heightMap, v_TexCoord).r;
+    height = heightScale * height - (heightScale * 0.5f);
+    
+    // Compute the offset    
+    float2 offsetDir = view.xy;
+    float2 offsetSample = v_TexCoord + offsetDir * height;
+ 
+    // Take the samples with the shifted offset
+    float3 normal = tex2D(normalMap, offsetSample );
+    
+    Color = ComputeIllumination( light, normal, 0.0f ) * tex2D(texMap, offsetSample);
 }

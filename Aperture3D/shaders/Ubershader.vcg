@@ -1,11 +1,58 @@
 
+//Calculate and return the bitangent given the tangent and normal
+float3 CalcBiTan(float4 tangent, float4 normal)
+{
+	float4 Tan = normalize(tangent);
+	float4 Norm = normalize(normal);
+    Tan = normalize(Tan - dot(Tan, Norm) * Norm);
+    return cross(Tan.xyz, Norm.xyz);
+}
+
 void main( float4 in a_Position  : POSITION,
 		   float4 out v_Position : POSITION,
+		   float4 in a_Tangent : TEXCOORD0,
+		   //float4 out v_Tangent : TEXCOORD0,
+		   
+		   float4 in a_Normal : TEXCOORD1,
+		   //float4 out v_Normal : TEXCOORD1,
+		   
+		   float2 in a_TexCoord : TEXCOORD2,
+		   float2 out v_TexCoord : TEXCOORD2,
+		   
+		   float3 out v_LightDir : COLOR0,
+		   float3 out v_ViewDir : COLOR1,
+		   
+		   uniform float3 LightDir,
+		   uniform float3 ViewDir,
 		   uniform float4x4 WorldViewProj,
 		   uniform float4x4 World
+		   
            )
 {
 	v_Position = mul( a_Position, WorldViewProj );
 	
 	float4 worldPos = mul(a_Position, World);
+	
+	float3 vTangentWS   = mul( a_Tangent.xyz,   (float3x3)World );
+    float3 vBitangentWS = mul( CalcBiTan(a_Tangent, a_Normal), (float3x3)World );
+    float3 vNormalWS    = mul( a_Normal.xyz,    (float3x3)World );
+ 
+    // Pack the data into the matrix for transforming
+    // the actual input data
+    float3x3 mWorldToTangentSpace;
+    mWorldToTangentSpace[0] = normalize( vTangentWS );
+    mWorldToTangentSpace[1] = normalize( vBitangentWS );
+    mWorldToTangentSpace[2] = normalize( vNormalWS );
+ 
+    // Use the matrix to transform all necessary
+    // inputs for the pixel shader.
+    v_LightDir = mul( mWorldToTangentSpace, -LightDir );
+ 
+   // o.viewdir = pCameraPosition - pWorld;
+    v_ViewDir = mul( mWorldToTangentSpace, ViewDir );
+ 
+    // Pass through any other necessary attributes
+    v_TexCoord = a_TexCoord;
+    //v_Tangent = a_Tangent;
+    //v_Normal = a_Normal;
 }

@@ -80,6 +80,9 @@ namespace Aperture3D.Nodes.Cameras
 			
 			UpdateViewMatrix ();
 			RootNode.GetCurrentScene().Camera.ViewMatrix = ViewMatrix;
+			RootNode.GetCurrentScene().Camera.Forward = this.Forward;
+			RootNode.GetCurrentScene().Camera.Position = this.Position;
+			RootNode.GetCurrentScene().Camera.Up = this.Up;
 		}
 		
 		private void UpdateViewMatrix ()

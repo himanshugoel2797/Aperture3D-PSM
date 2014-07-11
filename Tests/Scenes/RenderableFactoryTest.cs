@@ -22,9 +22,11 @@ namespace Tests.Scenes
 			Camera = new CameraNode(Matrix4.LookAt(new Vector3(10,10,0), Vector3.Zero, Vector3.UnitY));
 			camera3d = new Camera3D(new Vector3(10,10,0), 1.5f,5f,200);
 			
-			obj = new RenderNode(RenderableFactory.CreatePlane(10,10), new Simple(Vector4.One));
+			obj = new RenderNode(RenderableFactory.CreatePlane(10,10), new Ubershader());
 			
-			//RootNode.graphicsContext.SetDrawMode(Sce.PlayStation.Core.Graphics.DrawMode.Lines);
+			obj[0] = obj[1] = obj[2] = new Sce.PlayStation.Core.Graphics.Texture2D(VFS.GenerateRealPath("vfs0:/Application/Resources/uvTest.jpg"), false);
+			
+			RootNode.graphicsContext.SetDrawMode(Sce.PlayStation.Core.Graphics.DrawMode.TriangleStrip);
 			
 			AddNode(new MethodInvokerNode(Render));
 		}

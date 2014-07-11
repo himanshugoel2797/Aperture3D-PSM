@@ -12,6 +12,7 @@ namespace Aperture3D.Nodes
 		public IRenderable renderableObject{get;set;}
 		private VertexBuffer vbuffer;
 		public IShaderNode shader {get;set;}
+		public Texture2D[] Textures;
 		
 		private Vector3 scale = new Vector3(1,1,1), translation, rotation;
 		
@@ -20,12 +21,17 @@ namespace Aperture3D.Nodes
 		public RenderNode (IRenderable renderableObject, IShaderNode Shader):this(renderableObject){ SetShaderProgram(Shader); }
 		public RenderNode (IRenderable renderableObject)
 		{
+			Textures = new Texture2D[7];
+			
 			this.renderableObject = renderableObject;
-																												//Vertex			TexCoord			//Normals
-			vbuffer = new VertexBuffer(renderableObject.GetVertexCount()/3, renderableObject.GetIndexCount(), VertexFormat.Float3, VertexFormat.Float2, VertexFormat.Float3);
+																												//Vertex			TexCoord			//Normals			 //Tangents
+			vbuffer = new VertexBuffer(renderableObject.GetVertexCount()/3, renderableObject.GetIndexCount(), VertexFormat.Float3, VertexFormat.Float2, VertexFormat.Float3, VertexFormat.Float3);
 			vbuffer.SetVertices(0, renderableObject.GetVertices());
+			
 			if(renderableObject.GetTexCoords() != null)vbuffer.SetVertices(1, renderableObject.GetTexCoords());
 			if(renderableObject.HasNormals())vbuffer.SetVertices(2, renderableObject.GetNormals());
+			if(renderableObject.GetTangents() != null)vbuffer.SetVertices(3, renderableObject.GetTangents());
+			
 			vbuffer.SetIndices(renderableObject.GetIndices());
 		}
 		public void SetShaderProgram(IShaderNode Shader)
@@ -53,6 +59,16 @@ namespace Aperture3D.Nodes
 			rotation = new Vector3(x,y,z);
 		}
 		
+		public Texture2D this[int index]
+		{
+			get{
+				return Textures[index];	
+			}
+			set{
+				Textures[index] = value;	
+			}
+		}
+		
 		#region INode implementation
 		public override void Initialize ()
 		{
@@ -73,7 +89,19 @@ namespace Aperture3D.Nodes
 			
 			if(shader!= null)shader.SetShaderProgramOptions(this);
 			
+			//Set all available textures
+			for(int i = 0; i < Textures.Length; i++)
+			{
+				RootNode.graphicsContext.SetTexture(i, Textures[i]);	
+			}
+			
 			RootNode.graphicsContext.DrawArrays(0, vbuffer.IndexCount);
+			
+			//Unset all set textures
+			for(int i = 0; i < Textures.Length; i++)
+			{
+				RootNode.graphicsContext.SetTexture(i, null);	
+			}
 			
 			if(shader!= null)shader.UnSetShaderProgramOptions();
 			if(shader!= null)RootNode.graphicsContext.SetShaderProgram(null);

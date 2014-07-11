@@ -60,6 +60,7 @@
     <Compile Include="Nodes\Cameras\CameraNode.cs" />
     <Compile Include="Nodes\Cameras\FirstPersonCamera.cs" />
     <Compile Include="ShaderConfigs\Simple.cs" />
+    <Compile Include="ShaderConfigs\Ubershader.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Graphics\" />
@@ -74,9 +75,7 @@
   <ItemGroup>
     <EmbeddedShaderProgram Include="shaders\Simple.fcg" />
     <EmbeddedShaderProgram Include="shaders\Simple.vcg" />
-  </ItemGroup>
-  <ItemGroup>
-    <ShaderProgram Include="shaders\Ubershader.fcg" />
-    <ShaderProgram Include="shaders\Ubershader.vcg" />
+    <EmbeddedShaderProgram Include="shaders\Ubershader.fcg" />
+    <EmbeddedShaderProgram Include="shaders\Ubershader.vcg" />
   </ItemGroup>
 </Project>

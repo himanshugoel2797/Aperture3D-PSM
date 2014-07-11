@@ -54,8 +54,8 @@ namespace Aperture3D.Graphics
 						
 					}
 					
-					texcoords.Add((float)x * unitWidth);
-					texcoords.Add((float)y * unitHeight);
+					texcoords.Add((float)x/ (float)(width - 1));
+					texcoords.Add((float)y/ (float)(height - 1));
 					
 					normals.Add(0);
 					normals.Add(1);
@@ -69,12 +69,16 @@ namespace Aperture3D.Graphics
 			r.Normals = normals.ToArray();
 			r.TexCoords = texcoords.ToArray();
 			
+			//if(texcoords.Contains(1))throw new Exception();
+			
 			return CalculateTangents(r);
 		}
 		
 		private static Renderable CalculateTangents(Renderable r)
 		{
 			List<float> tangents = new List<float>();
+			
+			float[] tanFinal = new float[r.Vertices.Length];
 			
 			for(ushort i = 0; i < r.Indices.Length; i+=3)
 			{
@@ -96,15 +100,37 @@ namespace Aperture3D.Graphics
 				
 				float f = 1.0f/(du1 * dv2 - du2 * dv1);
 				
-				Vector3 Tangent;
-				
-				Tangent = new Vector3(f * (dv2 * e1.X - dv1 * e2.X), 
+				Vector3 Tangent = new Vector3(f * (dv2 * e1.X - dv1 * e2.X), 
 				                      f * (dv2 * e1.Y - dv1 * e2.Y),
 				                      f * (dv2 * e1.Z - dv1 * e2.Z));
 				
+				/*tangents.Add(Tangent.X);
+				tangents.Add(Tangent.Y);
+				tangents.Add(Tangent.Z);
+				
+				tangents.Add(Tangent.X);
+				tangents.Add(Tangent.Y);
+				tangents.Add(Tangent.Z);
+				
+				tangents.Add(Tangent.X);
+				tangents.Add(Tangent.Y);
+				tangents.Add(Tangent.Z);*/
+				
+				tanFinal[r.Indices[i] * 3] = Tangent.X;
+				tanFinal[r.Indices[i] * 3 + 1] = Tangent.Y;
+				tanFinal[r.Indices[i] * 3 + 2] = Tangent.Z;
+				
+				tanFinal[r.Indices[i + 1] * 3] = Tangent.X;
+				tanFinal[r.Indices[i + 1] * 3 + 1] = Tangent.Y;
+				tanFinal[r.Indices[i + 1] * 3 + 2] = Tangent.Z;
+				
+				tanFinal[r.Indices[i + 2] * 3] = Tangent.X;
+				tanFinal[r.Indices[i + 2] * 3 + 1] = Tangent.Y;
+				tanFinal[r.Indices[i + 2] * 3 + 2] = Tangent.Z;
 			}
 			
-			r.tangents = tangents.ToArray();
+			//r.tangents = tangents.ToArray();
+			r.tangents = tanFinal;
 			return r;
 		}
 	}
