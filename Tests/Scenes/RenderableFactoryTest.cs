@@ -24,7 +24,7 @@ namespace Tests.Scenes
 			
 			obj = new RenderNode(RenderableFactory.CreatePlane(10,10), new Simple(Vector4.One));
 			
-			RootNode.graphicsContext.SetDrawMode(Sce.PlayStation.Core.Graphics.DrawMode.Lines);
+			//RootNode.graphicsContext.SetDrawMode(Sce.PlayStation.Core.Graphics.DrawMode.Lines);
 			
 			AddNode(new MethodInvokerNode(Render));
 		}

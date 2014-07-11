@@ -16,7 +16,7 @@ namespace Aperture3D.Graphics
 			r.Normals = m.Normals.ToArray();
 			r.TexCoords = m.TexCoords.ToArray();
 			
-			return r;
+			return CalculateTangents(r);
 		}
 		
 		public static Renderable CreatePlane(int width, int height)
@@ -69,9 +69,44 @@ namespace Aperture3D.Graphics
 			r.Normals = normals.ToArray();
 			r.TexCoords = texcoords.ToArray();
 			
-			return r;
+			return CalculateTangents(r);
 		}
 		
+		private static Renderable CalculateTangents(Renderable r)
+		{
+			List<float> tangents = new List<float>();
+			
+			for(ushort i = 0; i < r.Indices.Length; i+=3)
+			{
+				Vector3 v1 = new Vector3(r.Vertices[r.Indices[i] * 3], r.Vertices[r.Indices[i] * 3 + 1], r.Vertices[r.Indices[i] * 3 + 2]);
+				Vector3 v2 = new Vector3(r.Vertices[r.Indices[i + 1] * 3], r.Vertices[r.Indices[i+1] * 3 + 1], r.Vertices[r.Indices[i+1] * 3 + 2]);
+				Vector3 v3 = new Vector3(r.Vertices[r.Indices[i + 2] * 3], r.Vertices[r.Indices[i+2] * 3 + 1], r.Vertices[r.Indices[i+2] * 3 + 2]);
+				
+				Vector2 tex1 = new Vector2(r.TexCoords[r.Indices[i] * 2], r.TexCoords[r.Indices[i] * 2 + 1]);
+				Vector2 tex2 = new Vector2(r.TexCoords[r.Indices[i+1] * 2], r.TexCoords[r.Indices[i+1] * 2 + 1]);
+				Vector2 tex3 = new Vector2(r.TexCoords[r.Indices[i+2] * 2], r.TexCoords[r.Indices[i+2] * 2 + 1]);
+				
+				Vector3 e1 = v2 - v1;
+				Vector3 e2 = v3 - v1;
+				
+				float du1 = tex2.X - tex1.X;
+				float dv1 = tex2.Y - tex1.Y;
+				float du2 = tex3.X - tex1.X;
+				float dv2 = tex3.Y - tex1.Y;
+				
+				float f = 1.0f/(du1 * dv2 - du2 * dv1);
+				
+				Vector3 Tangent;
+				
+				Tangent = new Vector3(f * (dv2 * e1.X - dv1 * e2.X), 
+				                      f * (dv2 * e1.Y - dv1 * e2.Y),
+				                      f * (dv2 * e1.Z - dv1 * e2.Z));
+				
+			}
+			
+			r.tangents = tangents.ToArray();
+			return r;
+		}
 	}
 }
 

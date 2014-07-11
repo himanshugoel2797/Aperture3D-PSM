@@ -10,6 +10,7 @@ namespace Aperture3D.Graphics
 		internal float[] TexCoords;
 		internal float[] Normals;
 		internal ushort[] Indices;
+		internal float[] tangents;
 		
 		public Renderable ()
 		{
@@ -56,6 +57,11 @@ namespace Aperture3D.Graphics
 		{
 			if(Vertices != null)return Vertices.Length;
 			return 0;
+		}
+		
+		public float[] GetTangents()
+		{
+			return tangents;	
 		}
 		#endregion
 	}

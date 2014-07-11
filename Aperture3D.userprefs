@@ -1,13 +1,9 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Aperture3D\Nodes\Cameras\FirstPersonCamera.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Tests\Scenes\RenderableFactoryTest.cs">
     <Files>
-      <File FileName="Aperture3D\Nodes\EntityNode.cs" Line="42" Column="56" />
-      <File FileName="Aperture3D\Graphics\RenderableFactory.cs" Line="17" Column="13" />
-      <File FileName="Aperture3D\Nodes\SceneGraph\RootNode.cs" Line="4" Column="27" />
-      <File FileName="Aperture3D\Nodes\SceneGraph\SceneNode.cs" Line="14" Column="3" />
-      <File FileName="Aperture3D\Nodes\Cameras\CameraNode.cs" Line="4" Column="35" />
-      <File FileName="Aperture3D\Nodes\Cameras\FirstPersonCamera.cs" Line="132" Column="7" />
+      <File FileName="Aperture3D\Graphics\RenderableFactory.cs" Line="49" Column="6" />
+      <File FileName="Tests\Scenes\RenderableFactoryTest.cs" Line="33" Column="4" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

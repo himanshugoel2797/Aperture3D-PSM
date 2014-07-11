@@ -17,6 +17,7 @@ namespace Aperture3D.Graphics
 		ushort[] GetIndices();
 		int GetIndexCount();
 		int GetVertexCount();
+		float[] GetTangents();
 	}
 }
 

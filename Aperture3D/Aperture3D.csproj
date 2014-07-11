@@ -75,4 +75,8 @@
     <EmbeddedShaderProgram Include="shaders\Simple.fcg" />
     <EmbeddedShaderProgram Include="shaders\Simple.vcg" />
   </ItemGroup>
+  <ItemGroup>
+    <ShaderProgram Include="shaders\Ubershader.fcg" />
+    <ShaderProgram Include="shaders\Ubershader.vcg" />
+  </ItemGroup>
 </Project>

@@ -1,7 +1,0 @@
-C:\Users\Himanshu\Source\Repos\Aperture3d-PSM\Aperture3D\Aperture3D\bin\Debug\Aperture3D.dll
-C:\Users\Himanshu\Source\Repos\Aperture3d-PSM\Aperture3D\Aperture3D\bin\Debug\Aperture3D.pdb
-C:\Users\Himanshu\Source\Repos\Aperture3d-PSM\Aperture3D\Aperture3D\obj\Debug\Aperture3D.dll
-C:\Users\Himanshu\Source\Repos\Aperture3d-PSM\Aperture3D\Aperture3D\obj\Debug\Aperture3D.pdb
-C:\Users\Himanshu\Source\Repos\Aperture3d-PSM\Aperture3D\Aperture3D\bin\Debug\BEPUPhysicsVita.dll
-C:\Users\Himanshu\Source\Repos\Aperture3d-PSM\Aperture3D\Aperture3D\bin\Debug\protobuf-net.dll
-C:\Users\Himanshu\Source\Repos\Aperture3d-PSM\Aperture3D\Aperture3D\obj\Debug\Aperture3D.csprojResolveAssemblyReference.cache
