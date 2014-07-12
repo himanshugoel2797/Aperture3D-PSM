@@ -61,6 +61,8 @@
     <Compile Include="Nodes\Cameras\FirstPersonCamera.cs" />
     <Compile Include="ShaderConfigs\Simple.cs" />
     <Compile Include="ShaderConfigs\Ubershader.cs" />
+    <Compile Include="ShaderConfigs\Depth.cs" />
+    <Compile Include="ShaderConfigs\SSAO.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Graphics\" />
@@ -77,5 +79,9 @@
     <EmbeddedShaderProgram Include="shaders\Simple.vcg" />
     <EmbeddedShaderProgram Include="shaders\Ubershader.fcg" />
     <EmbeddedShaderProgram Include="shaders\Ubershader.vcg" />
+    <EmbeddedShaderProgram Include="shaders\SSAO.fcg" />
+    <EmbeddedShaderProgram Include="shaders\SSAO.vcg" />
+    <EmbeddedShaderProgram Include="shaders\Depth.fcg" />
+    <EmbeddedShaderProgram Include="shaders\Depth.vcg" />
   </ItemGroup>
 </Project>

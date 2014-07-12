@@ -13,9 +13,10 @@ namespace Aperture3D.Graphics
 			
 			r.Vertices = m.Vertices.ToArray();
 			r.Indices = m.Indices.ToArray();
-			r.Normals = m.Normals.ToArray();
-			r.TexCoords = m.TexCoords.ToArray();
+			if(m.Normals != null)r.Normals = m.Normals.ToArray();
+			if(m.TexCoords != null)r.TexCoords = m.TexCoords.ToArray();
 			
+			//return r;
 			return CalculateTangents(r);
 		}
 		

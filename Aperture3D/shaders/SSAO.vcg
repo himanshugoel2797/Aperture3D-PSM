@@ -2,10 +2,9 @@
 void main( float4 in a_Position  : POSITION,
 		   float4 out v_Position : POSITION,
 		   float2 in a_TexCoord : TEXCOORD0,
-		   float2 out v_TexCoord : TEXCOORD0,
-		   uniform float4x4 WorldViewProj
-		   )
+		   float2 out v_TexCoord : TEXCOORD0
+           )
 {
-	v_Position = mul( a_Position, WorldViewProj );
+	v_Position = a_Position;
 	v_TexCoord = a_TexCoord;
 }

@@ -21,6 +21,7 @@ namespace Aperture3D.ShaderConfigs
 			{
 				simpleShader = new ShaderProgram(VFS.GetFileBytes("vfs1:/shaders/Simple.cgx"));
 				simpleShader.SetAttributeBinding(0, "a_Position");
+				simpleShader.SetAttributeBinding(1, "a_TexCoord");
 				simpleShader.SetUniformBinding(0, "WorldViewProj");
 				simpleShader.SetUniformBinding(1, "MaterialColor");
 			}
@@ -44,6 +45,7 @@ namespace Aperture3D.ShaderConfigs
 			Matrix4 WVP = RootNode.GetCurrentScene().ProjectionMatrix * RootNode.GetCurrentScene().Camera.ViewMatrix * renderer.WorldMatrix;
 			simpleShader.SetUniformValue(0, ref WVP);
 			simpleShader.SetUniformValue(1, ref Color);
+			RootNode.graphicsContext.SetTexture(1, renderer[1]);
 		}
 
 		public override void UnSetShaderProgramOptions ()

@@ -5,6 +5,7 @@ using Sce.PlayStation.Core;
 using Aperture3D;
 using Aperture3D.Graphics;
 using Aperture3D.ShaderConfigs;
+using System.Collections.Generic;
 
 namespace Tests.Scenes
 {
@@ -12,21 +13,29 @@ namespace Tests.Scenes
 	{		
 		Camera3D camera3d;
 		RenderNode obj;
+		List<RenderNode> objs;
 		
 		public override void Initialize ()
 		{
 			base.Initialize();
 			
 			//Setup the camera
-			ProjectionMatrix = Matrix4.Perspective(FMath.Radians(45.0f), Context.AspectRatio, 0.1f,1000f);
+			ProjectionMatrix = Matrix4.Perspective(FMath.Radians(45.0f), Context.AspectRatio, 0.1f,100f);
 			Camera = new CameraNode(Matrix4.LookAt(new Vector3(10,10,0), Vector3.Zero, Vector3.UnitY));
 			camera3d = new Camera3D(new Vector3(10,10,0), 1.5f,5f,200);
 			
-			obj = new RenderNode(RenderableFactory.CreatePlane(10,10), new Ubershader());
+			objs = new List<RenderNode>();
 			
-			obj[0] = obj[1] = obj[2] = new Sce.PlayStation.Core.Graphics.Texture2D(VFS.GenerateRealPath("vfs0:/Application/Resources/uvTest.jpg"), false);
+			//obj = new RenderNode(RenderableFactory.CreatePlane(10,10), new Ubershader());
 			
-			RootNode.graphicsContext.SetDrawMode(Sce.PlayStation.Core.Graphics.DrawMode.TriangleStrip);
+			for(int x = 0; x < 17; x++){
+			objs.Add(new RenderNode(RenderableFactory.LoadModel("vfs0:/Application/Resources/" + x.ToString() + "miku.a3d"), new Simple()));
+			objs[x][1] = new Sce.PlayStation.Core.Graphics.Texture2D("Application/Resources/miku.png", false);	
+			}
+			//obj[1] = new Sce.PlayStation.Core.Graphics.Texture2D(VFS.GenerateRealPath("vf" +
+			//	"s0:/Application/Resources/kirito.png"), false);
+			
+			//RootNode.graphicsContext.SetDrawMode(Sce.PlayStation.Core.Graphics.DrawMode.TriangleStrip);
 			
 			AddNode(new MethodInvokerNode(Render));
 		}
@@ -39,7 +48,10 @@ namespace Tests.Scenes
 			
 			camera3d.Update();
 		
-			obj.Activate();
+			foreach(RenderNode o in objs)
+			{
+				o.Activate();	
+			}
 			
 			RootNode.graphicsContext.AllFunctions(false);
 		}

@@ -2,8 +2,12 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Tests\Scenes\RenderableFactoryTest.cs">
     <Files>
-      <File FileName="Aperture3D\Graphics\RenderableFactory.cs" Line="49" Column="6" />
-      <File FileName="Tests\Scenes\RenderableFactoryTest.cs" Line="33" Column="4" />
+      <File FileName="Aperture3D\ShaderConfigs\Ubershader.cs" Line="10" Column="26" />
+      <File FileName="Aperture3D\Nodes\RenderNode.cs" Line="6" Column="9" />
+      <File FileName="Aperture3D\Nodes\Cameras\CameraNode.cs" Line="11" Column="27" />
+      <File FileName="Tests\Scenes\RenderableFactoryTest.cs" Line="32" Column="128" />
+      <File FileName="c:\Users\Himanshu\Source\Repos\Aperture3d-PSM\Aperture3D\Aperture3D\Graphics\RenderableFactory.cs" Line="20" Column="32" />
+      <File FileName="Aperture3D\shaders\Ubershader.fcg" Line="54" Column="20" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

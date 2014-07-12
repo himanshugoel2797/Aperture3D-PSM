@@ -51,5 +51,5 @@ void main(
     // Take the samples with the shifted offset
     float3 normal = tex2D(normalMap, offsetSample );
     
-    Color = ComputeIllumination( light, normal, 0.0f ) * tex2D(texMap, offsetSample);
+    Color = tex2D(texMap, v_TexCoord);
 }
