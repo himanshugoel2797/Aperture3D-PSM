@@ -1,0 +1,12 @@
+# Blender MTL File: 'carA.blend'
+# Material Count: 1
+
+newmtl Car
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd C:\Users\Himanshu\Documents\Projects\FutureRacer\FutureRacer\Resources\carA_tex_outline.png

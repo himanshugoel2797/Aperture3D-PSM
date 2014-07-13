@@ -42,10 +42,18 @@ namespace Aperture3D.ShaderConfigs
 		public override void SetShaderProgramOptions (RenderNode renderer)
 		{
 			Matrix4 WVP = RootNode.GetCurrentScene().ProjectionMatrix * RootNode.GetCurrentScene().Camera.ViewMatrix * renderer.WorldMatrix;
-			depth.SetUniformValue(0, ref WVP);
 			
-			//Clear and setup the framebuffer
-			RootNode.graphicsContext.ClearAll(1,1,1,1);
+			try{
+			depth.SetUniformValue(0, ref WVP);
+			}catch(ObjectDisposedException)
+			{
+				depth = new ShaderProgram(VFS.GetFileBytes("vfs1:/shaders/Depth.cgx"));
+				depth.SetAttributeBinding(0, "a_Position");	
+				depth.SetUniformBinding(0, "WorldViewProj");
+				depth.SetUniformValue(0, ref WVP);
+				RootNode.graphicsContext.SetShaderProgram(depth);
+			}
+			
 			RootNode.graphicsContext.SetFrameBuffer(RenderPassBuf);
 		}
 

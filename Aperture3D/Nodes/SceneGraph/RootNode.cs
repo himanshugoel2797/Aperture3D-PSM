@@ -6,6 +6,8 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading;
 using Sce.PlayStation.Core;
+using Sce.PlayStation.Core.Graphics;
+using Aperture3D.ShaderConfigs;
 
 namespace Aperture3D.Nodes
 {
@@ -18,10 +20,23 @@ namespace Aperture3D.Nodes
 		public static SceneNode _currentScene;
 		public static long Interval;
 		
+		public static Texture2D DepthTexture{
+			get{
+				return depthShader.RenderPassTarget;	
+			}
+			set{
+				depthShader.RenderPassTarget = value;	
+			}
+		}
+		
+		internal static Depth depthShader;
+		
 		static RootNode ()
 		{
 			graphicsContext = new Context ();
 			Children = new Dictionary<string, SceneNode> ();
+			
+			depthShader = new Depth();
 		}
 		
 		public static void AddSceneNode (string name, SceneNode scene)

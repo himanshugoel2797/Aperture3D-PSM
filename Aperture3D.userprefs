@@ -1,13 +1,16 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Tests\Scenes\RenderableFactoryTest.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Aperture3D\ShaderConfigs\Depth.cs">
     <Files>
-      <File FileName="Aperture3D\ShaderConfigs\Ubershader.cs" Line="10" Column="26" />
-      <File FileName="Aperture3D\Nodes\RenderNode.cs" Line="6" Column="9" />
-      <File FileName="Aperture3D\Nodes\Cameras\CameraNode.cs" Line="11" Column="27" />
-      <File FileName="Tests\Scenes\RenderableFactoryTest.cs" Line="32" Column="128" />
-      <File FileName="c:\Users\Himanshu\Source\Repos\Aperture3d-PSM\Aperture3D\Aperture3D\Graphics\RenderableFactory.cs" Line="20" Column="32" />
-      <File FileName="Aperture3D\shaders\Ubershader.fcg" Line="54" Column="20" />
+      <File FileName="Aperture3D\ShaderConfigs\Ubershader.cs" Line="39" Column="4" />
+      <File FileName="Tests\Scenes\RenderableFactoryTest.cs" Line="53" Column="1" />
+      <File FileName="Aperture3D\ShaderConfigs\Depth.cs" Line="54" Column="54" />
+      <File FileName="Aperture3D\ShaderConfigs\SSAO.cs" Line="54" Column="4" />
+      <File FileName="Aperture3D\Nodes\RenderNode.cs" Line="102" Column="4" />
+      <File FileName="Aperture3D\Nodes\SceneGraph\RootNode.cs" Line="30" Column="52" />
+      <File FileName="Aperture3D\shaders\Depth.vcg" Line="9" Column="22" />
+      <File FileName="Aperture3D\shaders\Depth.fcg" Line="3" Column="33" />
+      <File FileName="c:\Users\Himanshu\Source\Repos\Aperture3d-PSM\Aperture3D\Aperture3D\Context.cs" Line="69" Column="36" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

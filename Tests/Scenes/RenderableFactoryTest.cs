@@ -26,7 +26,9 @@ namespace Tests.Scenes
 			
 			objs = new List<RenderNode>();
 			
-			//obj = new RenderNode(RenderableFactory.CreatePlane(10,10), new Ubershader());
+			//obj = new RenderNode(RenderableFactory.CreatePlane(10,10), new Simple(Vector4.UnitW));
+			obj = new RenderNode(RenderableFactory.LoadModel("vfs0:/Application/Resources/carA.obj"), new Simple());
+			obj[1] = new Sce.PlayStation.Core.Graphics.Texture2D("Application/Resources/carA_tex_outline.png", false);
 			
 			for(int x = 0; x < 17; x++){
 			objs.Add(new RenderNode(RenderableFactory.LoadModel("vfs0:/Application/Resources/" + x.ToString() + "miku.a3d"), new Simple()));
@@ -52,6 +54,11 @@ namespace Tests.Scenes
 			{
 				o.Activate();	
 			}
+			
+			//obj[1] = RootNode.DepthTexture;
+			obj.Activate();
+			
+			
 			
 			RootNode.graphicsContext.AllFunctions(false);
 		}

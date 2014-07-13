@@ -8,16 +8,11 @@ namespace Aperture3D.ShaderConfigs
 {
 	public class SSAO : IShaderNode
 	{
-		private static Depth depthShader;
 		private static ShaderProgram ssaoShader;
 		private static RenderNode fsq;
 		
 		public SSAO ()
 		{
-			if(depthShader == null)
-			{
-				depthShader = new Depth();
-			}
 			
 			if(ssaoShader == null)
 			{
@@ -31,16 +26,22 @@ namespace Aperture3D.ShaderConfigs
 				fsq = new RenderNode(RenderableFactory.CreatePlane(1, 1), this);	
 			}
 		}
-
+		
+		public void Calculate()
+		{
+			//Trigger the drawing of the full screen quad
+			fsq.Activate();	
+		}
+		
 		#region implemented abstract members of Aperture3D.Nodes.IShaderNode
 		public override ShaderProgram GetShaderProgram ()
 		{
 			return ssaoShader;
 		}
-
+		
 		public override void SetShaderProgramOptions (RenderNode renderer)
 		{
-			RootNode.graphicsContext.SetShaderProgram(depthShader.GetShaderProgram());
+			
 		}
 
 		public override void UnSetShaderProgramOptions ()
@@ -50,7 +51,7 @@ namespace Aperture3D.ShaderConfigs
 
 		public override void Dispose ()
 		{
-			throw new NotImplementedException ();
+			
 		}
 		#endregion
 	}

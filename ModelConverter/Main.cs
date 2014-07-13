@@ -200,7 +200,7 @@ namespace ModelConverter
 				for (int counter = 0; counter < mesh.TextureCoordsChannelCount; counter++) {
 					if (mesh.HasTextureCoords (counter)) {
 						modTemp.TexCoords = new List<float> ();
-
+						
 						foreach (Vector3D vertex in mesh.GetTextureCoords(counter)) {
 							modTemp.TexCoords.Add (vertex.X);
 							modTemp.TexCoords.Add (vertex.Y);

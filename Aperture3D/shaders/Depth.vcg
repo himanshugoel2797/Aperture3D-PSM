@@ -1,10 +1,34 @@
 
 void main( float4 in a_Position  : POSITION,
 		   float4 out v_Position : POSITION,
-		   float out v_Color : COLOR0,
+		   float4 out v_Color : TEXCOORD0,
 		   uniform float4x4 WorldViewProj
 		   )
 {
-	v_Position = mul( a_Position, WorldViewProj );
-	v_Color = v_Position.z;
+	v_Position = mul( a_Position, WorldViewProj);
+	//v_Color = v_Position;
+	
+	// Get depth buffer value in range 0.0 to 1.0
+	float depth = v_Position.z / v_Position.w;
+
+// Break the depth value into 8-bit components
+unsigned int t = (unsigned int)(depth * 65535.0);
+unsigned int t1 = t >> 8;
+unsigned int t2 = t & 0x000000ff;
+
+// Cast the ints to floats
+float f1 = t1; // This is the coarse component
+float f2 = t2; // This is the fine component
+
+// Divide by 255 to put in range 0 to 1
+f1 *= 0.003921569;
+f2 *= 0.003921569;
+ 
+// Store the components as desired
+// Greyscale depth effect
+// Storing 16-bit depth
+v_Color.r = f1; 
+v_Color.g = f2;
+v_Color.b = 0.0;
+v_Color.a = 1.0;
 }
