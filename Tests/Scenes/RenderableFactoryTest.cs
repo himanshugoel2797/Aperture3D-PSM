@@ -6,37 +6,42 @@ using Aperture3D;
 using Aperture3D.Graphics;
 using Aperture3D.ShaderConfigs;
 using System.Collections.Generic;
+using BEPUphysics.Entities.Prefabs;
 
 namespace Tests.Scenes
 {
 	public class RenderableFactoryTest : SceneNode
 	{		
 		Camera3D camera3d;
-		RenderNode obj;
+		EntityNode entity, e2;
+		RenderNode obj, obj2;
 		List<RenderNode> objs;
 		
 		public override void Initialize ()
 		{
 			base.Initialize();
 			
+			physicsSpace.ForceUpdater.AllowMultithreading = true;
+			physicsSpace.ForceUpdater.Gravity = new BEPUphysics.MathExtensions.Vector3D(0, -1f, 0);
+			
 			//Setup the camera
 			ProjectionMatrix = Matrix4.Perspective(FMath.Radians(45.0f), Context.AspectRatio, 0.1f,100f);
-			Camera = new CameraNode(Matrix4.LookAt(new Vector3(10,10,0), Vector3.Zero, Vector3.UnitY));
-			camera3d = new Camera3D(new Vector3(10,10,0), 1.5f,5f,200);
+			Camera = new CameraNode(Matrix4.LookAt(new Vector3(50,50,0), Vector3.Zero, Vector3.UnitY));
+			camera3d = new Camera3D(new Vector3(10,10,0), 1.5f,5f,2);
 			
 			objs = new List<RenderNode>();
 			
-			//obj = new RenderNode(RenderableFactory.CreatePlane(10,10), new Simple(Vector4.UnitW));
-			obj = new RenderNode(RenderableFactory.LoadModel("vfs0:/Application/Resources/carA.obj"), new Simple());
-			obj[1] = new Sce.PlayStation.Core.Graphics.Texture2D("Application/Resources/carA_tex_outline.png", false);
+			obj2 = new RenderNode(RenderableFactory.CreatePlane(10,10), new Simple(Vector4.UnitW));
+			obj2[1] = new Sce.PlayStation.Core.Graphics.Texture2D("Application/Resources/uvTest.jpg", false);
+			e2 = new EntityNode(Vector3.Zero, obj2, new Box(-Vector3.UnitZ, 100, 1, 100));
 			
-			for(int x = 0; x < 17; x++){
-			objs.Add(new RenderNode(RenderableFactory.LoadModel("vfs0:/Application/Resources/" + x.ToString() + "miku.a3d"), new Simple()));
-			objs[x][1] = new Sce.PlayStation.Core.Graphics.Texture2D("Application/Resources/miku.png", false);	
-			}
-			//obj[1] = new Sce.PlayStation.Core.Graphics.Texture2D(VFS.GenerateRealPath("vf" +
-			//	"s0:/Application/Resources/kirito.png"), false);
+			obj = new RenderNode(RenderableFactory.LoadModel("vfs0:/Application/Resources/0miku.a3d"), new Simple());
+			obj[1] = new Sce.PlayStation.Core.Graphics.Texture2D("Application/Resources/miku.png", false);
 			
+			entity = new EntityNode(Vector3.Zero, obj, new Box(Vector3.One, 20,10, 20, 1));
+			
+			
+
 			//RootNode.graphicsContext.SetDrawMode(Sce.PlayStation.Core.Graphics.DrawMode.TriangleStrip);
 			
 			AddNode(new MethodInvokerNode(Render));
@@ -52,12 +57,14 @@ namespace Tests.Scenes
 		
 			foreach(RenderNode o in objs)
 			{
-				o.Activate();	
+				//o.Activate();	
 			}
 			
 			//obj[1] = RootNode.DepthTexture;
-			obj.Activate();
+			//obj.Activate();
 			
+			e2.Activate();
+			entity.Activate();
 			
 			
 			RootNode.graphicsContext.AllFunctions(false);
