@@ -118,10 +118,10 @@ namespace Aperture3D.Nodes
 				if (shader != null)
 					shader.UnSetShaderProgramOptions ();
 			
-				RootNode.graphicsContext.SetShaderProgram (RootNode.depthShader.GetShaderProgram ());
-				RootNode.depthShader.SetShaderProgramOptions(this);
-				RootNode.graphicsContext.DrawArrays (0, vbuffer.IndexCount);
-				RootNode.depthShader.UnSetShaderProgramOptions ();
+				//RootNode.graphicsContext.SetShaderProgram (RootNode.depthShader.GetShaderProgram ());
+				//RootNode.depthShader.SetShaderProgramOptions(this);
+				//RootNode.graphicsContext.DrawArrays (0, vbuffer.IndexCount);
+				//RootNode.depthShader.UnSetShaderProgramOptions ();
 				RootNode.graphicsContext.SetShaderProgram (null);
 			
 			

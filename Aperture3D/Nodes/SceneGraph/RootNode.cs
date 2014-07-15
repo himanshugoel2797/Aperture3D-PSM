@@ -20,23 +20,23 @@ namespace Aperture3D.Nodes
 		public static SceneNode _currentScene;
 		public static long Interval;
 		
-		public static Texture2D DepthTexture{
-			get{
-				return depthShader.RenderPassTarget;	
-			}
-			set{
-				depthShader.RenderPassTarget = value;	
-			}
-		}
-		
-		internal static Depth depthShader;
+//		public static Texture2D DepthTexture{
+//			get{
+//				return depthShader.RenderPassTarget;	
+//			}
+//			set{
+//				depthShader.RenderPassTarget = value;	
+//			}
+//		}
+//		
+//		internal static Depth depthShader;
 		
 		static RootNode ()
 		{
 			graphicsContext = new Context ();
 			Children = new Dictionary<string, SceneNode> ();
 			
-			depthShader = new Depth();
+//			depthShader = new Depth();
 		}
 		
 		public static void AddSceneNode (string name, SceneNode scene)
@@ -69,9 +69,10 @@ namespace Aperture3D.Nodes
 			long timeCounter = 0, avgCount = 0;
 			float dt = 1000f / TargetFPS;
 			
+			graphicsContext._Context.SetDepthFunc(DepthFuncMode.LEqual, true);
+			
 			Timer physicsUpdater = new Timer((state)=>{
 			
-				_currentScene.physicsSpace.Update(dt);
 				
 			}, null, 0,(int)(dt));
 			
@@ -115,6 +116,7 @@ namespace Aperture3D.Nodes
 				
 				//Activate the scene node
 				_currentScene.Activate ();
+				_currentScene.physicsSpace.Update(dt);
 				RootNode.graphicsContext.SwapBuffers();
 				
 				Interval = timer.ElapsedTicks;

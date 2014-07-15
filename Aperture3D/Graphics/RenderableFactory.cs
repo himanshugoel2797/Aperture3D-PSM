@@ -1,11 +1,33 @@
 using System;
 using Sce.PlayStation.Core;
 using System.Collections.Generic;
+using BEPUphysics.Entities.Prefabs;
+using BEPUphysics.MathExtensions;
 
 namespace Aperture3D.Graphics
 {
 	public static class RenderableFactory
 	{
+		public static MobileMesh GenerateCollisionMesh(IRenderable r)
+		{
+			return GenerateCollisionMesh(r, 0);
+		}
+		
+		public static MobileMesh GenerateCollisionMesh(IRenderable r, float mass)
+		{
+			var Vertices = r.GetVertices();
+			
+			Vector3D[] verts = new Vector3D[Vertices.Length/3];
+			
+			for(int c = 0; c < verts.Length; c++)
+			{
+				verts[c] = new Vector3D(Vertices[c * 3], Vertices[c * 3 + 1], Vertices[c * 3 + 2]);	
+			}
+			
+			if(mass != 0)return new MobileMesh(verts, r.GetIndices(), new AffineTransform(new Vector3D(5,5,5),BEPUQuaternion.Identity, Vector3D.Zero), BEPUphysics.CollisionShapes.MobileMeshSolidity.DoubleSided, mass);
+			else return new MobileMesh(verts, r.GetIndices(), new AffineTransform(new Vector3D(5,5,5), BEPUQuaternion.Identity, Vector3D.Zero),BEPUphysics.CollisionShapes.MobileMeshSolidity.DoubleSided);
+		}
+		
 		public static Renderable LoadModel(string filename)
 		{
 			Renderable r = new Renderable();
@@ -16,8 +38,8 @@ namespace Aperture3D.Graphics
 			if(m.Normals != null)r.Normals = m.Normals.ToArray();
 			if(m.TexCoords != null)r.TexCoords = m.TexCoords.ToArray();
 			
-			//return r;
-			return CalculateTangents(r);
+			return r;
+			//return CalculateTangents(r);
 		}
 		
 		public static Renderable CreatePlane(int width, int height)

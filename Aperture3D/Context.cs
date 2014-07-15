@@ -21,7 +21,7 @@ namespace Aperture3D
             Width = width;
             Height = height;
 			
-            _Context = new GraphicsContext(width,height, PixelFormat.Rgba, PixelFormat.Depth24,MultiSampleMode.None);
+            _Context = new GraphicsContext(width,height, PixelFormat.Rgba, PixelFormat.Depth24,MultiSampleMode.Msaa4x);
         	AspectRatio = _Context.Screen.AspectRatio;
 			
 			drawMode = DrawMode.Triangles;
