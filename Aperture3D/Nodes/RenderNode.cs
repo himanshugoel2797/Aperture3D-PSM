@@ -16,7 +16,7 @@ namespace Aperture3D.Nodes
 		public IShaderNode shader { get; set; }
 
 		public Texture2D[] Textures;
-		private Vector3 scale = new Vector3 (1, 1, 1), translation, rotation;
+		private Vector3 scale = new Vector3 (1, 1, 1), translation, rotation, gRotation;
 		
 		public Matrix4 WorldMatrix{ get; private set; }
 		
@@ -51,7 +51,7 @@ namespace Aperture3D.Nodes
 		
 		public void SetWorldMatrix (ref Matrix4 worldMatrix)
 		{
-			WorldMatrix = Matrix4.RotationXyz (rotation) * Matrix4.Translation (translation) * Matrix4.Scale (scale) * worldMatrix;
+			WorldMatrix = Matrix4.RotationXyz(gRotation) * Matrix4.Translation (translation) * Matrix4.RotationXyz (rotation) * Matrix4.Scale (scale) * worldMatrix;
 			//WorldMatrix = worldMatrix;
 		}
 		
@@ -68,6 +68,11 @@ namespace Aperture3D.Nodes
 		public void Rotate (float x, float y, float z)
 		{
 			rotation = new Vector3 (x, y, z);
+		}
+		
+		public void GlobalRotation(float x, float y, float z)
+		{
+				gRotation = new Vector3(x ,y ,z);
 		}
 		
 		public Texture2D this [int index] {

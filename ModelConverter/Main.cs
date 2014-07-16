@@ -77,7 +77,7 @@ namespace ModelConverter
 			int index = 0;
 			
 			foreach (Model model in models) {
-				using (Stream outwrite = File.OpenWrite (Path.Combine (Path.GetDirectoryName (filenameOUT), index.ToString () + Path.GetFileName (filenameOUT)))) {     //Create output file
+				using (Stream outwrite = File.Create(Path.Combine (Path.GetDirectoryName (filenameOUT), index.ToString () + Path.GetFileName (filenameOUT)))) {     //Create output file
 
 					Serializer.Serialize (outwrite, model);     //Do the magic, data serialized to xml file
 					
