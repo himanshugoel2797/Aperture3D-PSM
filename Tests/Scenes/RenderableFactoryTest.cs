@@ -7,6 +7,7 @@ using Aperture3D.Graphics;
 using Aperture3D.ShaderConfigs;
 using System.Collections.Generic;
 using BEPUphysics.Entities.Prefabs;
+//using Aperture3D.Math;
 
 namespace Tests.Scenes
 {
@@ -47,7 +48,6 @@ namespace Tests.Scenes
 			obj[1] = new Sce.PlayStation.Core.Graphics.Texture2D("Application/Resources/kirito.png", false);
 			entity = new EntityNode(Vector3.One, obj, new Capsule(Vector3.Zero, 0.25f, 0.05f, 1));
 			
-			
 			AddNode(new MethodInvokerNode(Render));
 		}
 		
@@ -56,7 +56,7 @@ namespace Tests.Scenes
 			Console.WriteLine(RootNode.FramesPerSecond);
 			Console.WriteLine(camera3d.Position);
 			
-			RootNode.graphicsContext.ClearAll(0f,0f,0.0f,1.0f);
+			RootNode.graphicsContext.ClearAll(0f,0.5f,1.0f,1.0f);
 			RootNode.graphicsContext.AllFunctions(true);
 			
 			

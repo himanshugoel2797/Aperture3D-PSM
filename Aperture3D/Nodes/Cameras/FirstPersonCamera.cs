@@ -30,6 +30,7 @@ namespace Aperture3D.Nodes.Cameras
 		public float Pitch { get; set; }
 
 		public float YLimit = 50;
+		public float XLimit = 50;
 		
 		public bool IsActive { get; set; }
 
@@ -74,6 +75,7 @@ namespace Aperture3D.Nodes.Cameras
 		private void UpdateCamera ()
 		{
 			Pitch = FMath.Clamp (Pitch, -YLimit, YLimit + 15);
+			Yaw = FMath.Clamp(Yaw, -XLimit, XLimit + 15);
 			
 			UpdateTouchInput ();
 			UpdatePadInput ();

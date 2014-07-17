@@ -1,4 +1,5 @@
 shaders/Simple.cgx
+shaders/Starfield.cgx
 app.exe
 Aperture3D.dll
 BEPUPhysicsVita.dll
@@ -22,3 +23,4 @@ Resources/ground.png
 Resources/ground.obj
 Resources/Shmup/uv.png
 Resources/Shmup/testWeapon.a3d
+Resources/Shmup/starTex.png

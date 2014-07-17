@@ -69,7 +69,11 @@ namespace Aperture3D
 				if(ButtonsAreDown(GamePadButtons.Up))AnalogRightY = -1;
 				else if (ButtonsAreDown(GamePadButtons.Down))AnalogRightY = 1;
 #elif ANALOG_LEFT_EMU
+				if(ButtonsAreDown(GamePadButtons.Left))AnalogLeftX = -1;
+				else if (ButtonsAreDown(GamePadButtons.Right))AnalogLeftX = 1;
 				
+				if(ButtonsAreDown(GamePadButtons.Up))AnalogLeftY = -1;
+				else if (ButtonsAreDown(GamePadButtons.Down))AnalogLeftY = 1;
 #endif
 				
 			}catch(Exception){}

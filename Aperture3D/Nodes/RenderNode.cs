@@ -4,6 +4,7 @@ using Aperture3D.Base;
 using Aperture3D.Graphics;
 using Sce.PlayStation.Core.Graphics;
 using Sce.PlayStation.Core;
+//using Aperture3D.Math;
 
 namespace Aperture3D.Nodes
 {
@@ -18,7 +19,7 @@ namespace Aperture3D.Nodes
 		public Texture2D[] Textures;
 		private Vector3 scale = new Vector3 (1, 1, 1), translation, rotation, gRotation;
 		
-		public Matrix4 WorldMatrix{ get; private set; }
+		public Matrix4 WorldMatrix{ get; set; }
 		
 		public RenderNode (IRenderable renderableObject, IShaderNode Shader):this(renderableObject)
 		{

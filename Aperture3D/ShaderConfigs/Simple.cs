@@ -58,6 +58,7 @@ namespace Aperture3D.ShaderConfigs
 		public override void Dispose ()
 		{
 			simpleShader.Dispose();
+			simpleShader = null;
 		}
 		#endregion
 	}
