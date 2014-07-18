@@ -14,7 +14,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
+    <Optimize>true</Optimize>
     <OutputPath>bin\Debug</OutputPath>
     <DefineConstants>DEBUG;</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
@@ -44,6 +44,7 @@
   <ItemGroup>
     <Compile Include="AppMain.cs" />
     <Compile Include="Scenes\RenderableFactoryTest.cs" />
+    <Compile Include="ShaderConfigs\Starfield.cs" />
   </ItemGroup>
   <ItemGroup>
     <ShaderProgram Include="shaders\Simple.fcg" />
@@ -65,6 +66,7 @@
     <Folder Include="Scenes\" />
     <Folder Include="Resources\" />
     <Folder Include="Resources\Shmup\" />
+    <Folder Include="ShaderConfigs\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\uvTest.jpg">

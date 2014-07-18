@@ -7,6 +7,7 @@ using Aperture3D.Graphics;
 using Aperture3D.ShaderConfigs;
 using System.Collections.Generic;
 using BEPUphysics.Entities.Prefabs;
+using Tests.ShaderConfigs;
 //using Aperture3D.Math;
 
 namespace Tests.Scenes
@@ -44,9 +45,12 @@ namespace Tests.Scenes
 			obj3.Scale(5,5,5);
 			e3 = new EntityNode(Vector3.Zero, obj3, new Box(new Vector3(0,0,-1), 200, 1, 200));
 			
-			obj = new RenderNode(RenderableFactory.LoadModel("vfs0:/Application/Resources/0kirito.a3d"), new Simple());
+			obj = new RenderNode(RenderableFactory.CreatePlane(30,30), new Starfield());
+			obj.Scale(100,100,100);
+			
+			//obj = new RenderNode(RenderableFactory.LoadModel("vfs0:/Application/Resources/0kirito.a3d"), new Starfield());
 			obj[1] = new Sce.PlayStation.Core.Graphics.Texture2D("Application/Resources/kirito.png", false);
-			entity = new EntityNode(Vector3.One, obj, new Capsule(Vector3.Zero, 0.25f, 0.05f, 1));
+			//entity = new EntityNode(Vector3.One, obj, new Capsule(Vector3.Zero, 0.25f, 0.05f, 1));
 			
 			AddNode(new MethodInvokerNode(Render));
 		}
@@ -56,7 +60,7 @@ namespace Tests.Scenes
 			Console.WriteLine(RootNode.FramesPerSecond);
 			Console.WriteLine(camera3d.Position);
 			
-			RootNode.graphicsContext.ClearAll(0f,0.5f,1.0f,1.0f);
+			RootNode.graphicsContext.ClearAll(0f,0f,0f,1.0f);
 			RootNode.graphicsContext.AllFunctions(true);
 			
 			
@@ -77,10 +81,16 @@ namespace Tests.Scenes
 				
 				obj2.Rotate(gRot2Y, gRot2X, rot2);
 				obj3.Rotate(gRot3Y, gRot3X, rot3);
+			obj.Rotate(FMath.Radians(90),0,0);
+			obj.Scale(1,1,1);
+			obj.Translate(camera3d.Position.X - 35f, camera3d.Position.Y + 20, camera3d.Position.Z - 50);
+			var t = Matrix4.Identity;
+			obj.SetWorldMatrix(ref t);
 			
 			e2.Activate();
 			e3.Activate();
-			entity.Activate();
+			obj.Activate();
+			//entity.Activate();
 			
 			
 			RootNode.graphicsContext.AllFunctions(false);
