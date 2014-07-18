@@ -63,6 +63,14 @@ namespace Aperture3D
 		{
 			_Context.DrawArrays(drawMode, first,count); 	
 		}
+		public void DrawArrays(int first, int count, int instanceFirst, int instanceCount)
+		{
+			DrawInstanceArrays(first, count, instanceFirst, instanceCount);	
+		}
+		public void DrawInstanceArrays(int first, int count, int instanceFirst, int instanceCount)
+		{
+			_Context.DrawArraysInstanced(drawMode, first, count, instanceFirst, instanceCount);	
+		}
 		
 		public void ClearAll(float r, float g, float b, float a)
 		{
