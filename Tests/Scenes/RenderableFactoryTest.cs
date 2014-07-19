@@ -8,6 +8,7 @@ using Aperture3D.ShaderConfigs;
 using System.Collections.Generic;
 using BEPUphysics.Entities.Prefabs;
 using Tests.ShaderConfigs;
+using Tests.Helpers;
 //using Aperture3D.Math;
 
 namespace Tests.Scenes
@@ -27,8 +28,10 @@ namespace Tests.Scenes
 			physicsSpace.ForceUpdater.AllowMultithreading = true;
 			physicsSpace.ForceUpdater.Gravity = new BEPUphysics.MathExtensions.Vector3D(0, -0.5f, 0);
 			
+			var tex = Noise.GenerateExponentPerlinImage(128, 128, 50, false);
+			
 			//Setup the camera
-			ProjectionMatrix = Matrix4.Perspective(FMath.Radians(45.0f), Context.AspectRatio, 0.1f,500f);
+			ProjectionMatrix = Matrix4.Perspective(FMath.Radians(45.0f), Context.AspectRatio, 0.1f,900f);
 			Camera = new CameraNode(Matrix4.LookAt(new Vector3(50,50,0), Vector3.Zero, Vector3.UnitY));
 			camera3d = new Camera3D(new Vector3(10,10,10), 1.5f,5f,2);
 			camera3d.Sensitivity = 32;
@@ -45,11 +48,17 @@ namespace Tests.Scenes
 			obj3.Scale(5,5,5);
 			e3 = new EntityNode(Vector3.Zero, obj3, new Box(new Vector3(0,0,-1), 200, 1, 200));
 			
-			obj = new RenderNode(RenderableFactory.CreatePlane(30,30), new Starfield());
+			obj = new RenderNode(RenderableFactory.LoadModel("vfs0:/Application/Resources/Shmup/sphere.a3d"), new Simple());
 			obj.Scale(100,100,100);
+			tex.SetFilter(Sce.PlayStation.Core.Graphics.TextureFilterMode.Linear);
+			obj[1] = new Sce.PlayStation.Core.Graphics.Texture2D("Application/Resources/Shmup/starMap.png", false);
+			//obj[1] = tex;
+			
+			objs.Add(new RenderNode(RenderableFactory.CreatePlane(1, 1), new Simple(new Vector4(0, 0.5f, 1.0f, 1f))));
+			objs[0][1] = tex;
 			
 			//obj = new RenderNode(RenderableFactory.LoadModel("vfs0:/Application/Resources/0kirito.a3d"), new Starfield());
-			obj[1] = new Sce.PlayStation.Core.Graphics.Texture2D("Application/Resources/kirito.png", false);
+			//obj[1] = new Sce.PlayStation.Core.Graphics.Texture2D("Application/Resources/kirito.png", false);
 			//entity = new EntityNode(Vector3.One, obj, new Capsule(Vector3.Zero, 0.25f, 0.05f, 1));
 			
 			AddNode(new MethodInvokerNode(Render));
@@ -59,6 +68,7 @@ namespace Tests.Scenes
 		{
 			Console.WriteLine(RootNode.FramesPerSecond);
 			Console.WriteLine(camera3d.Position);
+			
 			
 			RootNode.graphicsContext.ClearAll(0f,0f,0f,1.0f);
 			RootNode.graphicsContext.AllFunctions(true);
@@ -81,15 +91,20 @@ namespace Tests.Scenes
 				
 				obj2.Rotate(gRot2Y, gRot2X, rot2);
 				obj3.Rotate(gRot3Y, gRot3X, rot3);
-			obj.Rotate(FMath.Radians(90),0,0);
-			obj.Scale(1,1,1);
-			obj.Translate(camera3d.Position.X - 35f, camera3d.Position.Y + 20, camera3d.Position.Z - 50);
+			//obj.Rotate(FMath.Radians(90),0,0);
+			obj.Scale(500,500,500);
+			obj.Translate(camera3d.Position.X, camera3d.Position.Y, camera3d.Position.Z);
 			var t = Matrix4.Identity;
 			obj.SetWorldMatrix(ref t);
+			objs[0].Rotate(1f, 0, 0);
+			objs[0].Scale(500,500,500);
+			objs[0].SetWorldMatrix(ref t);
 			
+			
+			obj.Activate();
 			e2.Activate();
 			e3.Activate();
-			obj.Activate();
+			objs[0].Activate();
 			//entity.Activate();
 			
 			

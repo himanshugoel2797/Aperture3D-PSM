@@ -10,7 +10,7 @@ namespace Aperture3D.ShaderConfigs
 		private static ShaderProgram simpleShader;
 		private Vector4 Color; 
 		
-		public Simple () : this(Vector4.UnitW)
+		public Simple () : this(Vector4.One)
 		{
 			
 		}

@@ -23,16 +23,16 @@ void main( float4 in a_Position  : POSITION,
 		   uniform float4x4 WorldViewProj
            )
 {
-	v_Position = a_Position * 128;
-	//v_TexCoord = a_TexCoord * 256;
-	v_TexCoord = mul(a_Position, WorldViewProj) * 256;
+	v_Position = mul(a_Position, WorldViewProj);
+	v_TexCoord = a_TexCoord * 256;
+	//v_TexCoord = mul(a_Position, WorldViewProj) * 256;
 	
 	float2 iResolution = float2(128,128);
 		//get coords and direction
 	float2 uv=v_TexCoord.xy/iResolution.xy-.5;
 	uv.y*=iResolution.y/iResolution.x;
 	float3 dir=float3(uv*zoom,1.);
-	float time=iGlobalTime*speed+.25;
+	float time=0*speed+.25;
 
 	//mouse rotation
 	float a1=.5;//+iMouse.x/iResolution.x*2.;
@@ -73,5 +73,5 @@ void main( float4 in a_Position  : POSITION,
 		s+=stepsize;
 	}
 	v=lerp(float3(length(v)),v,saturation); //color adjust
-	v_Color = float4(v*.01,v.r * .01);	
+	v_Color = float4(v*.01,1);	
 }

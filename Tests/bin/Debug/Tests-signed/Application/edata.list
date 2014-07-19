@@ -23,4 +23,5 @@ Resources/ground.png
 Resources/ground.obj
 Resources/Shmup/uv.png
 Resources/Shmup/testWeapon.a3d
-Resources/Shmup/starTex.png
+Resources/Shmup/sphere.a3d
+Resources/Shmup/starMap.png
