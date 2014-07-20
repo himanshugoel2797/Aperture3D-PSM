@@ -5,9 +5,42 @@ using BEPUphysics.Entities.Prefabs;
 using BEPUphysics.MathExtensions;
 
 using Aperture3D.Graphics;
+using Aperture3D.Base;
 
 namespace Aperture3D.Nodes.Cameras
 {
+	public class FirstPersonCameraNode : INode
+	{
+		public Camera3D Camera3d;
+		
+		public FirstPersonCameraNode(Vector3 start, float height, float radius, float mass = 0)
+		{
+			RootNode.GetCurrentScene().Camera = new CameraNode();
+			
+			Camera3d = (mass == 0)?
+				new Camera3D(start, height, radius):
+					new Camera3D(start, height, radius, mass);
+		}
+		
+		#region implemented abstract members of Aperture3D.Base.INode
+		public override void Initialize ()
+		{
+			Initialized = true;
+		}
+
+		public override void Activate ()
+		{
+			Camera3d.Update();
+		}
+
+		public override void Dispose ()
+		{
+			
+		}
+		#endregion
+		
+	}
+	
 	public class Camera3D : Capsule
 	{
 		public Vector3 Target { get; set; }
@@ -81,6 +114,7 @@ namespace Aperture3D.Nodes.Cameras
 			UpdatePadInput ();
 			
 			UpdateViewMatrix ();
+			RootNode.GetCurrentScene().ProjectionMatrix = ProjectionMatrix;
 			RootNode.GetCurrentScene().Camera.ViewMatrix = ViewMatrix;
 			RootNode.GetCurrentScene().Camera.Forward = this.Forward;
 			RootNode.GetCurrentScene().Camera.Position = this.Position;

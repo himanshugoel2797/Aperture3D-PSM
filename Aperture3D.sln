@@ -5,7 +5,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aperture3D", "Aperture3D\Ap
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModelConverter", "ModelConverter\ModelConverter.csproj", "{6676176A-55C8-4BA7-928D-54164FAFCB9D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{84E45DDE-12E8-4B28-9E44-02B1C4015F14}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shmup", "Shmup\Shmup.csproj", "{30774635-0D41-4451-A327-B1B9AF94148B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,20 +13,20 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{30774635-0D41-4451-A327-B1B9AF94148B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{30774635-0D41-4451-A327-B1B9AF94148B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{30774635-0D41-4451-A327-B1B9AF94148B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{30774635-0D41-4451-A327-B1B9AF94148B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{6676176A-55C8-4BA7-928D-54164FAFCB9D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{6676176A-55C8-4BA7-928D-54164FAFCB9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6676176A-55C8-4BA7-928D-54164FAFCB9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6676176A-55C8-4BA7-928D-54164FAFCB9D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{84E45DDE-12E8-4B28-9E44-02B1C4015F14}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{84E45DDE-12E8-4B28-9E44-02B1C4015F14}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{84E45DDE-12E8-4B28-9E44-02B1C4015F14}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{84E45DDE-12E8-4B28-9E44-02B1C4015F14}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B3F5FA6D-8C8E-461A-A412-A9FBF058E08F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B3F5FA6D-8C8E-461A-A412-A9FBF058E08F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B3F5FA6D-8C8E-461A-A412-A9FBF058E08F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B3F5FA6D-8C8E-461A-A412-A9FBF058E08F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = Tests\Tests.csproj
+		StartupItem = Shmup\Shmup.csproj
 	EndGlobalSection
 EndGlobal

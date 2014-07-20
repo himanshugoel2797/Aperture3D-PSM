@@ -1,0 +1,16 @@
+shaders/Simple.cgx
+app.exe
+Aperture3D.dll
+BEPUPhysicsVita.dll
+System.Core.dll
+System.Json.dll
+System.Xml.dll
+System.Runtime.Serialization.dll
+System.ServiceModel.Web.dll
+System.ServiceModel.dll
+protobuf-net.dll
+Player/Weapons/TestGun/testWeapon.a3d
+Player/Weapons/TestGun/uv.png
+Environment/Resources/Hyades.png
+Environment/Resources/starMap.png
+Environment/Resources/sphere.a3d

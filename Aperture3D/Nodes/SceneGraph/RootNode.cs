@@ -71,11 +71,6 @@ namespace Aperture3D.Nodes
 			
 			graphicsContext._Context.SetDepthFunc(DepthFuncMode.LEqual, true);
 			
-			Timer physicsUpdater = new Timer((state)=>{
-			
-				
-			}, null, 0,(int)(dt));
-			
 			//General purpose interval provider
 			Stopwatch timer = new Stopwatch ();
 			timer.Start ();
